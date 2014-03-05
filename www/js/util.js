@@ -598,6 +598,16 @@ function showUserOptions() {
         $("#us-ssl").attr("title", "");
     }
 
+    if (!ALLOW_IPV6) {
+        $("#us-ipv6").prop("checked", false);
+        $("#us-ipv6").attr("disabled", true);
+        $("#us-ipv6").attr("title", "This server has not enabled IPv6");
+    } else {
+        $("#us-ipv6").prop("checked", USEROPTS.ipv6);
+        $("#us-ipv6").attr("disabled", false);
+        $("#us-ipv6").attr("title", "");
+    }
+
     $("#us-synch").prop("checked", USEROPTS.synch);
     $("#us-synch-accuracy").val(USEROPTS.synch_accuracy);
     $("#us-wmode-transparent").prop("checked", USEROPTS.wmode_transparent);
@@ -628,6 +638,7 @@ function saveUserOptions() {
     USEROPTS.ignore_channelcss    = $("#us-no-channelcss").prop("checked");
     USEROPTS.ignore_channeljs     = $("#us-no-channeljs").prop("checked");
     USEROPTS.secure_connection    = $("#us-ssl").prop("checked");
+    USEROPTS.ipv6                 = $("#us-ipv6").prop("checked");
 
     USEROPTS.synch                = $("#us-synch").prop("checked");
     USEROPTS.synch_accuracy       = parseFloat($("#us-synch-accuracy").val()) || 2;
